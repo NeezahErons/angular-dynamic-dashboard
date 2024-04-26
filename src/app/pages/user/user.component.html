@@ -1,0 +1,18 @@
+<div class="border-b bg-slate-100 flex justify-between md:justify-start md:gap-20 py-3 px-6">
+<p class="font-extrabold font-sans text-xl container mx-auto" style="text-shadow: 1px 1px 5px #0000009f;" >Regres</p>
+<div class="searh rounded">
+    <!-- <input type="number" (input)="[search(gre.value)]" #gre placeholder="Enter id" class="w-56 h-8 outline-none px-4 rounded py-3" name="" id=""> -->
+</div>
+</div>
+<div class="p-6">
+    <div class="text-xl font-bold cursor-pointer mb-3" (click)="back()" >&lt;&nbsp;back</div>
+    <div class="border max-w-28 shadow-md rounded-md flex justify-start items-center gap-6">
+            <img [src]="(item | async)?.avatar" alt="">
+            <div class="flex flex-col">
+                <h1 class="font-semibold text-lg" >{{(item | async)?.first_name}}&nbsp;{{ (item | async)?.last_name }}</h1>
+                <p>{{(item | async)?.email}} <br> 
+                <em><small  class="text-neutral-400">id:&nbsp;{{ (item | async)?.id }}</small></em>
+                </p>
+            </div>
+        </div>
+        </div>

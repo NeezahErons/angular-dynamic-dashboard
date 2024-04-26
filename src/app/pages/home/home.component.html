@@ -1,0 +1,42 @@
+<div class="border-b bg-slate-100 flex justify-between md:justify-start md:gap-20 py-3 px-6">
+<p class="font-extrabold font-sans text-xl container mx-auto" style="text-shadow: 1px 1px 5px #0000009f;" >Regres</p>
+<div class="searh rounded">
+    <input type="number" #re (input)="[search(re.value)]" placeholder="Enter id" class="w-56 h-8 outline-none px-4 rounded py-3" name="" id="">
+</div>
+</div>
+@if (loading) {
+    <mat-spinner mode="indeterminate" ></mat-spinner>
+} @else {
+    <div class="w-full">
+        <div style="margin: 3rem auto;" *ngIf="(usersList$ | async)?.length else ye" class=" grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+    @for (item of (usersList$ | async); track $index) {
+        <!-- @if (item) { -->
+            <div class="border shadow rounded-md flex justify-start items-center gap-6 cursor-pointer hover:bg-slate-50 bg-opacity-40"
+            (click)="viewUser(item.id)"
+            >
+            <img [src]="item.avatar" alt="">
+            <div class="flex flex-col">
+                <h1 class="font-semibold text-lg" >{{item.first_name}}&nbsp;{{ item.last_name }}</h1>
+                <p class="text-neutral-800">{{item.email}} <br> 
+                    <em><small class="text-neutral-400" >id:&nbsp;{{ item.id }}</small></em>
+                </p>
+            </div>
+        </div>
+     <!-- } @else { -->
+        <!-- } -->
+    }
+</div>
+<ng-template #ye >
+    <div class="text-center py-6 text-xl font-bold text-gray-400">No data to show</div>
+</ng-template>
+    <mat-paginator
+    *ngIf="!re.value"
+    [length]="(page$ | async)?.total"
+    hidePageSize="true"
+    [pageIndex]="((page$ | async)?.page ?? 1)- 1"
+    [pageSize]="(page$ | async)?.per_page"
+    (page)="onPageEvent($event)"
+    >
+    </mat-paginator>
+    </div>
+}
