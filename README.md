@@ -47,8 +47,9 @@ ng lint --fix
 ```
 src/
   ├── app/
-  ├── components/
+  ├── pages/
   ├── services/
+  ├── store/
   ├── routes/
   ├── theme/
 ```
