@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap, tap } from 'rxjs/operators';
-import { Observable, EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
 import { UserActions } from './user.actions';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class UserEffects {
       concatMap(({ page: pageNumber }) =>
         /** An EMPTY observable only emits completion. Replace with your own observable API request */
         this.api.getAllUsers(pageNumber).pipe(
-          map(({ data, support, ...page }) =>
+          map(({ data, ...page }) =>
             UserActions.usersSuccess({ data, page })
           ),
           catchError((error) => of(UserActions.usersFailure({ error })))
