@@ -1,4 +1,4 @@
-import { createActionGroup, emptyProps, props } from '@ngrx/store';
+import { createActionGroup, props } from '@ngrx/store';
 import { PaginatorInfo, User } from '../models';
 
 export const UserActions = createActionGroup({
